@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 app.use(express.json())
-/*http://localhost:3000/?name=Username&sort=updated примерный ввид запроса к api*/
+/*http://localhost:3000/?name=Username&sort=updated примерный вид запроса к api*/
 app.get("/", async (req, res)=>{
     const UserName = await  req.query.name//получаю логин пользователя, через параметры запроса
     const sort = await  req.query.sort//получаю метод сортировки через параметры запроса
@@ -24,12 +24,12 @@ app.get("/", async (req, res)=>{
         .then(data => {
             for (let i = 0;i<data.length;i++){//пробегаемся по issue
                 if (!data[i].pull_request)//проверка на то, что не pull reques
-                issue += "<br>Вопрос :" + data[i].title + "<br>Кол-во комментарие: " + data[i].comments + "<br>Дата создания: " +data[i].created_at+ "<br>Дата последнего редактирования: " +data[i].updated_at+"<hr>"
+                issue += "<br>Вопрос :" + data[i].title + "<br>Кол-во комментариев: " + data[i].comments + "<br>Дата создания: " +data[i].created_at+ "<br>Дата последнего редактирования: " +data[i].updated_at+"<hr>"
             }
         })
         .catch(err => console.log(err))
     }
-    res.send(issue);//вывожу название,количество коментарие, дату создания и посленнего обнавленния всех issue репозитория
+    res.send(issue);//вывожу название,количество комментариев, дату создания и последнего обновления всех issue репозитория
 }
 );
 
