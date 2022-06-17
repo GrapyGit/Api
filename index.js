@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 app.use(express.json())
-
+//http://localhost:3000/?name=Username&sort=updated примерный ввид запроса к api
 app.get("/", async (req, res)=>{
     const UserName = await  req.query.name//получаю логин пользователя, через параметры запроса
     const sort = await  req.query.sort//получаю метод сортировки через параметры запроса
